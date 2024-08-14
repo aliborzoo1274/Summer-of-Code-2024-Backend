@@ -1,5 +1,5 @@
 from django.db import models
-from person import Person
+from person.models import Person
 
 class Account(models.Model):
     balance = models.PositiveIntegerField()

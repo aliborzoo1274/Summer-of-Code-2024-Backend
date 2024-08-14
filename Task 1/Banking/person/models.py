@@ -1,6 +1,9 @@
 from django.db import models
+from django.core.validators import MaxValueValidator
 
 class Person(models.Model):
-    first_name = models.CharField()
-    last_name = models.CharField()
-    national_id = models.PositiveIntegerField(max_length=10)
+    first_name = models.CharField(max_length=63)
+    last_name = models.CharField(max_length=63)
+    national_id = models.PositiveIntegerField(
+        validators=[MaxValueValidator(9999999999)]
+    )
