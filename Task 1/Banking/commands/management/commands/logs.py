@@ -10,10 +10,10 @@ class Command(BaseCommand):
     file_path = os.path.join(current_dir, '..', '..', '..', 'logs')
 
     def handle(self, *args, **kwargs):
-        # self.list_of_owner_and_balance()
-        # self.account_with_most_balance()
-        # self.five_accounts_with_least_balance()
-        # accounts_whose_id_is_greater_than_its_balance()
+        self.list_of_owner_and_balance()
+        self.account_with_most_balance()
+        self.five_accounts_with_least_balance()
+        self.accounts_whose_id_is_greater_than_its_balance()
         self.accounts_where_the_national_id_of_the_account_holder_exceeds_its_balance()
 
     def list_of_owner_and_balance(self):
@@ -58,4 +58,4 @@ class Command(BaseCommand):
             if (len(query_set) == 0):
                 file.write('Empty')
             for i in query_set:
-                file.write(f"Account_id: {i.id} | Owner_id: {i.person.national_id} | Balance: {i.balance}\n")
+                file.write(f"Account_id: {i.id} | Owner_national_id: {i.person.national_id} | Balance: {i.balance}\n")
