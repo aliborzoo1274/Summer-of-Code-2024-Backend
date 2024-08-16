@@ -10,8 +10,10 @@ class Command(BaseCommand):
     file_path = os.path.join(current_dir, '..', '..', '..', 'logs')
 
     def handle(self, *args, **kwargs):
-        self.list_of_owner_and_balance()
-        self.account_with_most_balance()
+        # self.list_of_owner_and_balance()
+        # self.account_with_most_balance()
+        # self.five_accounts_with_least_balance()
+        return
 
     def list_of_owner_and_balance(self):
         query_set = Account.objects.all()
@@ -28,3 +30,11 @@ class Command(BaseCommand):
         final_file_path = os.path.join(self.file_path, 'account_with_most_balance.txt')
         with open(final_file_path, 'w') as file:
             file.write(str(max_balance))
+
+    def five_accounts_with_least_balance(self):
+        query_set = Account.objects.all().order_by('balance')[:5]
+
+        final_file_path = os.path.join(self.file_path, 'five_accounts_with_least_balance.txt')
+        with open(final_file_path, 'w') as file:
+            for i in query_set:
+                file.write(f"{i.balance}\n")
