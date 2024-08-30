@@ -15,5 +15,13 @@ class JobAdmin(admin.ModelAdmin):
             return False
         return True
 
+class EmployerAdmin(admin.ModelAdmin):
+    
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+        return qs.filter(user=request.user)
+
+admin.site.register(Employer, EmployerAdmin)
 admin.site.register(Job, JobAdmin)
-admin.site.register(Employer)

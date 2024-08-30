@@ -26,3 +26,12 @@ class JobSeeker(models.Model):
 
     def __str__(self):
         return self.user.username
+
+class Application(models.Model):
+    job = models.ForeignKey(Job, on_delete=models.CASCADE)
+    job_seeker = models.ForeignKey(JobSeeker, on_delete=models.CASCADE)
+    cover_letter = models.TextField()
+    applied_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.job_seeker.user.username} - {self.job.title}"
